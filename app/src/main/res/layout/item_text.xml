@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:orientation="horizontal"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
@@ -19,17 +19,81 @@
             android:background="@drawable/shape_icon"
             android:padding="10dp"
             android:src="@drawable/baseline_smart_toy_24"/>
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvBot"
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:layout_marginStart="5dp"
+            android:orientation="vertical"
             android:layout_gravity="start|center"
-            android:background="@drawable/shape_item_receive_text_bg"/>
+            android:layout_marginStart="5dp"
+            android:background="@drawable/shape_item_receive_text_bg">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:id="@+id/llHint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="或換個表達方式"
+                    android:textStyle="bold"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@color/white"/>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/llChoose"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvChoose1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#5E6E4B"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="10dp"
+                    android:text="我再想想..."
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/shape_choose_msg_bg"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvChoose2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#5E6E4B"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="10dp"
+                    android:text="我換個方式說..."
+                    android:background="@drawable/shape_choose_msg_bg"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 

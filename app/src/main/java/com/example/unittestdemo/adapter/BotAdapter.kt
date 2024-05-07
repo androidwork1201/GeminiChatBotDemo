@@ -12,6 +12,7 @@ import com.example.unittestdemo.databinding.ItemTextBinding
 class BotAdapter : RecyclerView.Adapter<BotAdapter.ViewHolder>() {
 
     private val list: MutableList<TextModel> = mutableListOf()
+    private var onHelpChooseListener: OnHelpChooseListener? = null
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -26,10 +27,21 @@ class BotAdapter : RecyclerView.Adapter<BotAdapter.ViewHolder>() {
         notifyItemInserted(list.size - 1)
     }
 
+    fun deleteItem(position: Int) {
+        list.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeRemoved(position, list.size)
+    }
+
     inner class ViewHolder(binding: ItemTextBinding) : RecyclerView.ViewHolder(binding.root) {
         private val botText = binding.tvBot
         private val userText = binding.tvUser
         private val llBot = binding.llBot
+        private val hint = binding.llHint
+        private val choose = binding.llChoose
+
+        private val choose1 = binding.tvChoose1
+        private val choose2 = binding.tvChoose2
 
         fun bind(textModel: TextModel) {
 
@@ -46,6 +58,19 @@ class BotAdapter : RecyclerView.Adapter<BotAdapter.ViewHolder>() {
 
                 userText.text = textModel.text
             }
+
+            hint.visibility = if (textModel.isHelp) View.VISIBLE else View.GONE
+            choose.visibility = if (textModel.isHelp) View.VISIBLE else View.GONE
+            choose1.setOnClickListener {
+                onHelpChooseListener?.onClickHelpItem(choose1.text.toString())
+                hint.visibility =  View.GONE
+                choose.visibility = View.GONE
+            }
+            choose2.setOnClickListener {
+                onHelpChooseListener?.onClickHelpItem(choose2.text.toString())
+                hint.visibility =  View.GONE
+                choose.visibility = View.GONE
+            }
         }
     }
 
@@ -60,5 +85,10 @@ class BotAdapter : RecyclerView.Adapter<BotAdapter.ViewHolder>() {
         holder.bind(item)
     }
 
-
+    fun setOnHelpChooseListener(onHelpChooseListener: OnHelpChooseListener) {
+        this.onHelpChooseListener = onHelpChooseListener
+    }
+    interface OnHelpChooseListener {
+        fun onClickHelpItem(text: String)
+    }
 }
